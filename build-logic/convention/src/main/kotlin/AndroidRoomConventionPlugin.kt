@@ -23,7 +23,6 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
-           // pluginManager.apply("androidx.room")
             pluginManager.apply("com.android.library")
             pluginManager.apply("org.jetbrains.kotlin.kapt")
 

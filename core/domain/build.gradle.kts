@@ -1,5 +1,6 @@
 plugins {
     id("satellite.android.library")
+    id("satellite.hilt")
     id("satellite.android.room")
 }
 android {

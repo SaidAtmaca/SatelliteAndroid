@@ -24,7 +24,7 @@ dependencies {
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
-    implementation("com.android.tools.build:gradle:8.6.0")
+    implementation(libs.android.gradlePlugin)
 
 }
 
