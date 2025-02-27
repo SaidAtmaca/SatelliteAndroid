@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "SatelliteAndroid"
 include(":app")
+include(":core")
+include(":core:model")
