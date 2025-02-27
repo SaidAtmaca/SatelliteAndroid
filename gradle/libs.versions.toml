@@ -1,13 +1,31 @@
 [versions]
-agp = "8.8.0"
-kotlin = "2.0.0"
-coreKtx = "1.15.0"
+agp = "8.6.0"
+kotlin = "2.0.20"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.10.0"
+activityCompose = "1.9.0"
 composeBom = "2024.04.01"
+appcompat = "1.7.0"
+material = "1.12.0"
+material3 = "1.3.1"
+materialIconsCoreAndroid = "1.6.7"
+lifecycleViewmodelKtx = "2.8.6"
+androidTools = "31.7.2"
+materialIconsExtended = "1.7.5"
+navigationCompose = "2.5.3"
+room = "2.6.1"
+ksp = "2.0.20-1.0.25"
+hilt = "2.50"
+hiltAndroidCompiler = "2.48"
+hiltCompiler = "1.1.0"
+hiltWork = "1.2.0"
+androidxRoom = "2.6.1"
+workRuntimeKtx = "2.9.1"
+converterGson = "2.9.0"
+gson = "2.10.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,9 +42,41 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompiler" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+compose-compiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+# Convention Plugins
+satellite-android-application = { id = "satellite.android.application" }
+satellite-android-application-compose = { id = "satellite.android.application.compose" }
+satellite-android-library-compose = { id = "satellite.android.library.compose" }
+satellite-android-library = { id = "satellite.android.library" }
+satellite-hilt = { id = "satellite.hilt",version.ref="hilt" }
+satellite-android-room = { id = "satellite.android.room" }
 
