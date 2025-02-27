@@ -24,3 +24,6 @@ rootProject.name = "SatelliteAndroid"
 include(":app")
 include(":core")
 include(":core:model")
+include(":core:data")
+include(":core:common")
+include(":core:domain")
