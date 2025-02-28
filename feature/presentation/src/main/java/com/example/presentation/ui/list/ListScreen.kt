@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -37,12 +36,12 @@ import androidx.navigation.NavController
 import com.example.model.SatelliteModel
 import com.example.presentation.R
 import com.example.presentation.theme.CornerRound
-import com.saidatmaca.presentation.util.Screen
 
 
 @Composable
 fun ListScreen(
     navController: NavController,
+    onClickSatellite :(Int)->Unit,
     viewModel: ListViewModel = hiltViewModel()
 ) {
 
@@ -78,7 +77,11 @@ fun ListScreen(
                         if (list.isEmpty()) {
                             NoDataLayout()
                         } else {
-                            SuccessScreenContent(navController, list)
+                            SuccessScreenContent(navController = navController,
+                                list = list,
+                                onClickSatellite = { id->
+                                    onClickSatellite(id)
+                                })
                         }
                     }
 
@@ -105,7 +108,7 @@ fun LoadingScreenContent() {
 }
 
 @Composable
-fun SuccessScreenContent(navController: NavController,list:List<SatelliteModel>) {
+fun SuccessScreenContent(navController: NavController,list:List<SatelliteModel>,onClickSatellite: (Int) -> Unit) {
 
         LazyColumn(
             modifier = Modifier
@@ -114,6 +117,7 @@ fun SuccessScreenContent(navController: NavController,list:List<SatelliteModel>)
 
               SatelliteCard(eachSatellite){ clickedSatellite ->
                   Log.e("clickedCard",clickedSatellite.toString())
+                  onClickSatellite(clickedSatellite.id)
               }
             }
 

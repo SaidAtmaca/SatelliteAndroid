@@ -25,9 +25,8 @@ fun DetailScreen(
     Box(Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Text("Detail")
-        Button(onClick = {navController.navigate(Screen.ListScreen.route)}) {
-            Text("to list")
-        }
+
+        Text(id.toString())
+
     }
 }
