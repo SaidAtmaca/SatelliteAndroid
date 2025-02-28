@@ -2,11 +2,9 @@ package com.example.presentation.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -32,8 +30,9 @@ fun Navigation(navController: NavHostController) {
             composable(Screen.ListScreen.route) { entry ->
                 val viewModel = entry.sharedViewModel<SharedViewModel>(navController)
                 ListScreen(navController = navController,
-                    onClickSatellite = { clickedSatellite ->
-                        viewModel.updateState(clickedSatellite)
+                    onClickSatellite = { clickedSatelliteName,clickedSatelliteId ->
+                        viewModel.updateId(clickedSatelliteId)
+                        viewModel.updateNameState(clickedSatelliteName)
                         navController.navigate(Screen.DetailScreen.route)
                     })
             }
@@ -41,11 +40,13 @@ fun Navigation(navController: NavHostController) {
             composable(Screen.DetailScreen.route) { entry ->
 
                 val viewModel = entry.sharedViewModel<SharedViewModel>(navController)
-                val id= viewModel.sharedState.value
+                val id= viewModel.idState.value
+                val name = viewModel.nameState.value
 
                 DetailScreen(
                     navController = navController,
-                    id = id
+                    id = id,
+                    name = name
                 )
             }
         }

@@ -41,7 +41,7 @@ import com.example.presentation.theme.CornerRound
 @Composable
 fun ListScreen(
     navController: NavController,
-    onClickSatellite :(Int)->Unit,
+    onClickSatellite :(String,Int)->Unit,
     viewModel: ListViewModel = hiltViewModel()
 ) {
 
@@ -77,10 +77,10 @@ fun ListScreen(
                         if (list.isEmpty()) {
                             NoDataLayout()
                         } else {
-                            SuccessScreenContent(navController = navController,
+                            SuccessScreenContent(
                                 list = list,
-                                onClickSatellite = { id->
-                                    onClickSatellite(id)
+                                onClickSatellite = { name,id->
+                                    onClickSatellite(name,id)
                                 })
                         }
                     }
@@ -108,7 +108,7 @@ fun LoadingScreenContent() {
 }
 
 @Composable
-fun SuccessScreenContent(navController: NavController,list:List<SatelliteModel>,onClickSatellite: (Int) -> Unit) {
+fun SuccessScreenContent(list:List<SatelliteModel>,onClickSatellite: (String,Int) -> Unit) {
 
         LazyColumn(
             modifier = Modifier
@@ -117,7 +117,7 @@ fun SuccessScreenContent(navController: NavController,list:List<SatelliteModel>,
 
               SatelliteCard(eachSatellite){ clickedSatellite ->
                   Log.e("clickedCard",clickedSatellite.toString())
-                  onClickSatellite(clickedSatellite.id)
+                  onClickSatellite(clickedSatellite.name, clickedSatellite.id)
               }
             }
 

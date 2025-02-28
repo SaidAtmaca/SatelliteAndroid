@@ -1,26 +1,27 @@
 package com.saidatmaca.core.viewmodel
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class SharedViewModel :ViewModel() {
 
-    private val _sharedState = MutableStateFlow(0)
-    val sharedState = _sharedState.asStateFlow()
+    private val _idState = MutableStateFlow(0)
+    val idState = _idState.asStateFlow()
 
-    fun updateState(int:Int){
-        _sharedState.value = int
+    private val _nameState = MutableStateFlow("")
+    val nameState = _nameState.asStateFlow()
+
+    fun updateId(int:Int){
+        _idState.value = int
+    }
+    fun updateNameState(string: String){
+        _nameState.value=string
     }
 
     override fun onCleared() {
         super.onCleared()
-        _sharedState.value = 0
+        _idState.value = 0
     }
 }
 

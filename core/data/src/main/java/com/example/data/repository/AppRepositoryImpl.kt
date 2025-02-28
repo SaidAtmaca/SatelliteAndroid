@@ -8,6 +8,7 @@ import com.example.data.local.SatelliteDatabaseDao
 import com.example.data.local.entity.mapper.SatelliteDetailEntityMapper
 import com.example.domain.repository.AppRepository
 import com.example.model.PositionItem
+import com.example.model.PositionListModel
 import com.example.model.PositionModel
 import com.example.model.SatelliteDetailModel
 import com.example.model.SatelliteModel
@@ -40,16 +41,12 @@ class AppRepositoryImpl(
 
     override fun fetchSatelliteDetail(context: Context,id: Int): Flow<Resource<SatelliteDetailModel>> = flow {
         emit(Resource.Loading())
-
         try {
-
             val localList = dao.getSatelliteDetailList()
             val filteredList = localList.filter { it.id == id }
             if (filteredList.isNotEmpty()) {
-
                 val model = SatelliteDetailEntityMapper.asDomain(filteredList.first())
                 emit(Resource.Success(model))
-
             } else {
                 val jsonString = readAssetFile(context, "SATELLITE-DETAIL.json")
                 val satelliteDetailList: List<SatelliteDetailModel> =
@@ -57,20 +54,18 @@ class AppRepositoryImpl(
 
                 val filteredDetailList = satelliteDetailList.filter { it.id == id }
 
-                if (filteredList.isNotEmpty()) {
+                if (filteredDetailList.isNotEmpty()) {
+                    val entity = SatelliteDetailEntityMapper.asEntity(filteredDetailList.first())
+                    dao.insertSatelliteDetail(entity)
                     emit(Resource.Success(filteredDetailList.first()))
                 } else {
                     emit(Resource.Error("Detay Bulunamadı"))
                 }
-
-
             }
-
 
         } catch (e: IOException) {
             emit(Resource.Error(e.message.toString()))
         }
-        /** room kontrol edilecek cache'de varsa emit edilecek yoksa eğer json dan alınacak. */
     }
 
     override fun fetchSatellitePosition(context: Context,id: Int): Flow<Resource<List<PositionModel>>> = flow {
@@ -78,18 +73,15 @@ class AppRepositoryImpl(
         try {
 
             val jsonString = readAssetFile(context,"POSITIONS.json")
-            val satellitePositionList: List<PositionItem> = Gson().fromJson(jsonString, Array<PositionItem>::class.java).toList()
-
-            val filteredList = satellitePositionList.filter { it.id == id.toString() }
+            val satellitePositionList: PositionListModel = Gson().fromJson(jsonString, PositionListModel::class.java)
+            val filteredList = satellitePositionList.list.filter { it.id == id.toString() }
 
             if (filteredList.isNotEmpty()) {
 
                 val positionList = filteredList.first().positions
 
                 if (positionList.isNotEmpty()) {
-
                     emit(Resource.Success(positionList))
-
                 } else {
                     emit(Resource.Error("Pozisyonlar Bulunamadı"))
                 }
