@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +23,32 @@ class ListViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow<ListUIState>(ListUIState.Loading)
     val uiState: StateFlow<ListUIState> = _uiState
+
+    fun updateSearchQuery(query: String) {
+        val currentState = _uiState.value
+        if (currentState is ListUIState.Success) {
+            _uiState.update {
+                currentState.copy(
+                    searchQuery = query,
+                    filteredList = if (query.length >= 3) {
+                        filterList(currentState.satelliteList, query)
+                    } else {
+                        currentState.satelliteList
+                    }
+                )
+            }
+        }
+    }
+
+    private fun filterList(list: List<SatelliteModel>, query: String): List<SatelliteModel> {
+        return if (query.isEmpty()) {
+            list
+        } else {
+            list.filter { satellite ->
+                satellite.name.contains(query, ignoreCase = true)
+            }
+        }
+    }
 
     fun fetchSatelliteList(context: Context) {
         job = viewModelScope.launch {
@@ -46,8 +73,13 @@ class ListViewModel @Inject constructor(
     }
 }
 
-sealed interface ListUIState{
-    data class Success(val satelliteList: List<SatelliteModel>): ListUIState
-    data object Loading :ListUIState
+sealed interface ListUIState {
+    data class Success(
+        val satelliteList: List<SatelliteModel>,
+        val searchQuery: String = "",
+        val filteredList: List<SatelliteModel> = satelliteList
+    ) : ListUIState
+
+    data object Loading : ListUIState
     data class Error(val message: String) : ListUIState
 }

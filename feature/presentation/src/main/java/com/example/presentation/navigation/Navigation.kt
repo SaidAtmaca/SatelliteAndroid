@@ -29,7 +29,7 @@ fun Navigation(navController: NavHostController) {
         ) {
             composable(Screen.ListScreen.route) { entry ->
                 val viewModel = entry.sharedViewModel<SharedViewModel>(navController)
-                ListScreen(navController = navController,
+                ListScreen(
                     onClickSatellite = { clickedSatelliteName,clickedSatelliteId ->
                         viewModel.updateId(clickedSatelliteId)
                         viewModel.updateNameState(clickedSatelliteName)
@@ -44,7 +44,6 @@ fun Navigation(navController: NavHostController) {
                 val name = viewModel.nameState.value
 
                 DetailScreen(
-                    navController = navController,
                     id = id,
                     name = name
                 )

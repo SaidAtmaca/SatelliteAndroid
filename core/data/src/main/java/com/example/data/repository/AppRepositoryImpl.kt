@@ -23,10 +23,6 @@ class AppRepositoryImpl(
 
     override fun fetchSatelliteList(context: Context): Flow<Resource<List<SatelliteModel>>> = flow {
         emit(Resource.Loading())
-
-        /** json dan uydu listesi çekilecek. */
-
-        emit(Resource.Loading())
         try {
 
             val jsonString = readAssetFile(context,"SATELLITE-LIST.json")
@@ -77,7 +73,6 @@ class AppRepositoryImpl(
             val filteredList = satellitePositionList.list.filter { it.id == id.toString() }
 
             if (filteredList.isNotEmpty()) {
-
                 val positionList = filteredList.first().positions
 
                 if (positionList.isNotEmpty()) {
@@ -85,7 +80,6 @@ class AppRepositoryImpl(
                 } else {
                     emit(Resource.Error("Pozisyonlar Bulunamadı"))
                 }
-
             } else {
                 emit(Resource.Error("Pozisyonlar Bulunamadı"))
             }
@@ -93,8 +87,6 @@ class AppRepositoryImpl(
         } catch (e: IOException) {
             emit(Resource.Error(e.message.toString()))
         }
-
-        /** json dan uydu listesi çekilecek. */
     }
 
 

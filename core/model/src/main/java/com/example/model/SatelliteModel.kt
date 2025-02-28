@@ -4,6 +4,6 @@ import java.io.Serializable
 
 data class SatelliteModel(
     val id: Int ,
-    val active : String,
+    val active : Boolean,
     val name : String
 ) : Serializable
