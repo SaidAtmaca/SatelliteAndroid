@@ -1,10 +1,11 @@
 package com.example.model
 
+import android.media.MediaDrm.LogMessage
 import java.io.Serializable
 
 data class SatelliteDetailModel(
     val id: Int,
-    val cost_per_launch: Int,
+    val cost_per_launch: Long,
     val first_flight: String,
     val height: Int,
     val mass: Int

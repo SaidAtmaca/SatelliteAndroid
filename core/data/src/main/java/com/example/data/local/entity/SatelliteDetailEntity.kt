@@ -9,7 +9,7 @@ import java.io.Serializable
 data class SatelliteDetailEntity(
     @PrimaryKey
     val id: Int,
-    val costPerLaunch: Int,
+    val costPerLaunch: Long,
     val firstFlight: String,
     val height: Int,
     val mass: Int

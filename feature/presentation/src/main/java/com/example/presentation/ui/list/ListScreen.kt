@@ -226,7 +226,7 @@ fun SatelliteCard(
                     Text(
                         text = model.name,
                         color = textColor,
-                        style = MaterialTheme.typography.labelMedium
+                        style = MaterialTheme.typography.titleSmall
                     )
                     Text(
                         text = activeString,
