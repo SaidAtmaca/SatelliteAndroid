@@ -1,7 +1,7 @@
 Satellite Android App
 =====================
 
-**Satellite Android** is a fully functional Android app built entirely with Kotlin and Jetpack Compose.
+**Satellite Android** is a fully functional Android app built entirely with Kotlin and Jetpack Compose. You can download app and install from **[here.](https://github.com/SaidAtmaca/SatelliteAndroid/blob/development/apk's/satelliteAndroid.apk)**
 
 # Features
 
