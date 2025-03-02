@@ -6,8 +6,9 @@ import com.example.domain.repository.AppRepository
 import com.example.model.PositionItem
 import com.example.model.SatelliteModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class SatelliteListUseCase(
+class SatelliteListUseCase @Inject constructor(
     private val repository: AppRepository
 ) {
 

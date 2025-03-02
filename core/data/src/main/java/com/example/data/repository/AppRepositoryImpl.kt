@@ -24,25 +24,24 @@ class AppRepositoryImpl(
     override fun fetchSatelliteList(context: Context): Flow<Resource<List<SatelliteModel>>> = flow {
         emit(Resource.Loading())
         try {
-
-            val jsonString = readAssetFile(context,"SATELLITE-LIST.json")
-            val satelliteList: List<SatelliteModel> = Gson().fromJson(jsonString, Array<SatelliteModel>::class.java).toList()
-
+            val jsonString = readAssetFile(context, "SATELLITE-LIST.json")
+            val satelliteList: List<SatelliteModel> =
+                Gson().fromJson(jsonString, Array<SatelliteModel>::class.java).toList()
             emit(Resource.Success(satelliteList))
-
-        } catch (e: IOException) {
+        } catch (e: RuntimeException) {
             emit(Resource.Error(e.message.toString()))
         }
     }
 
     override fun fetchSatelliteDetail(context: Context,id: Int): Flow<Resource<SatelliteDetailModel>> = flow {
+
         emit(Resource.Loading())
+
         try {
-            val localList = dao.getSatelliteDetailList()
-            val filteredList = localList.filter { it.id == id }
-            if (filteredList.isNotEmpty()) {
-                val model = SatelliteDetailEntityMapper.asDomain(filteredList.first())
-                emit(Resource.Success(model))
+            val localData = dao.getSatelliteDetailList()
+            val detail = localData.find { it.id == id }
+            if (detail != null) {
+                emit(Resource.Success(SatelliteDetailEntityMapper.asDomain(detail)))
             } else {
                 val jsonString = readAssetFile(context, "SATELLITE-DETAIL.json")
                 val satelliteDetailList: List<SatelliteDetailModel> =
@@ -58,9 +57,8 @@ class AppRepositoryImpl(
                     emit(Resource.Error("Detay Bulunamadı"))
                 }
             }
-
-        } catch (e: IOException) {
-            emit(Resource.Error(e.message.toString()))
+        } catch (e: Exception) {
+            emit(Resource.Error(e.message ?: "Bilinmeyen Hata"))
         }
     }
 

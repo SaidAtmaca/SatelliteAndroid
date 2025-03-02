@@ -6,8 +6,9 @@ import com.example.domain.repository.AppRepository
 import com.example.model.SatelliteDetailModel
 import com.example.model.SatelliteModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class SatelliteDetailUseCase (
+class SatelliteDetailUseCase  @Inject constructor(
     private val repository: AppRepository
 ) {
 
