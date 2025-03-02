@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -21,4 +22,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "SatelliteAndroid"
 include(":app")
- 
+include(":core")
+include(":core:model")
+include(":core:data")
+include(":core:common")
+include(":core:domain")
+include(":feature")
+include(":feature:presentation")
+include(":core:viewModel")
