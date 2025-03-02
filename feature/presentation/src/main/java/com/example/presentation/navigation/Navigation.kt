@@ -14,7 +14,6 @@ import androidx.navigation.compose.navigation
 import com.example.presentation.ui.detail.DetailScreen
 import com.example.presentation.ui.list.ListScreen
 import com.saidatmaca.core.viewmodel.SharedViewModel
-import com.saidatmaca.presentation.util.Screen
 
 
 @Composable

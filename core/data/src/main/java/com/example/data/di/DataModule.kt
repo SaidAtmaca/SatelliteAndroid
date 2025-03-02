@@ -24,7 +24,6 @@ object DataModule {
         return AppRepositoryImpl(db.roomDao)
     }
 
-
     @Provides
     @Singleton
     fun provideSatelliteDatabase(app: Application): SatelliteDatabase {

@@ -15,16 +15,10 @@ fun SatelliteApp(
 ) {
     SatelliteAndroidTheme(dynamicColor = false) {
         val navController = rememberNavController()
-
-
         Scaffold(Modifier.fillMaxSize()) {
             Box(modifier = Modifier.padding(it)){
                 Navigation(navController = navController)
             }
         }
-
-
-
-
     }
 }

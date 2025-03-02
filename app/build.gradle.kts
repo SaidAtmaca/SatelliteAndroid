@@ -2,7 +2,6 @@ plugins {
     id("satellite.android.application")
     id("satellite.android.application.compose")
     id("satellite.hilt")
-
 }
 android {
     namespace = "com.example.satelliteandroid"

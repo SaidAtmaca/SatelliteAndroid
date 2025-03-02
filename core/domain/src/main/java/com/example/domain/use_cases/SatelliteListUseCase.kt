@@ -11,7 +11,6 @@ import javax.inject.Inject
 class SatelliteListUseCase @Inject constructor(
     private val repository: AppRepository
 ) {
-
     fun fetchSatelliteList(context: Context) : Flow<Resource<List<SatelliteModel>>> {
         return repository.fetchSatelliteList(context)
     }

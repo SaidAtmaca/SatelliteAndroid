@@ -10,11 +10,7 @@ import com.example.model.SatelliteModel
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
-
-
     fun fetchSatelliteList(context: Context) : Flow<Resource<List<SatelliteModel>>>
-
     fun fetchSatelliteDetail(context: Context,id:Int) : Flow<Resource<SatelliteDetailModel>>
-
     fun fetchSatellitePosition(context: Context,id: Int) : Flow<Resource<List<PositionModel>>>
 }

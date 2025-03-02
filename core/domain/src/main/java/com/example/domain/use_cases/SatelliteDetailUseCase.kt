@@ -11,7 +11,6 @@ import javax.inject.Inject
 class SatelliteDetailUseCase  @Inject constructor(
     private val repository: AppRepository
 ) {
-
     fun fetchSatelliteDetail(context: Context,id:Int) : Flow<Resource<SatelliteDetailModel>> {
         return repository.fetchSatelliteDetail(context,id)
     }
