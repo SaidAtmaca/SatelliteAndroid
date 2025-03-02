@@ -12,14 +12,14 @@ Satellite Android, where satellites are displayed on a list page and filtering c
 <table><tr>
 <td> 
   <p align="center" style="padding: 10px">
-    <img alt="Forwarding" src="" width="400">
+    <img alt="Forwarding" src="https://github.com/SaidAtmaca/SatelliteAndroid/blob/development/app/src/main/res/drawable/s1.png" width="400">
     <br>
     <em style="color: grey">Home Screen</em>
   </p> 
 </td>
 <td> 
   <p align="center">
-    <img alt="Routing" src="" width="400">
+    <img alt="Routing" src="https://github.com/SaidAtmaca/SatelliteAndroid/blob/development/app/src/main/res/drawable/s2.png" width="400">
     <br>
     <em style="color: grey">Detail Screen</em>
   </p> 
