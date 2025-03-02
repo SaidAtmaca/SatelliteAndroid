@@ -1,6 +1,5 @@
 package com.example.model
 
-import android.media.MediaDrm.LogMessage
 import java.io.Serializable
 
 data class SatelliteDetailModel(
